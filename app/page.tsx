@@ -1,4 +1,7 @@
+'use client';
+
 import Scene from "@/components/canvas/Scene";  // Import the Scene component
+import About from "@/components/sections/About";
 
 /**
  * Home component
@@ -6,6 +9,16 @@ import Scene from "@/components/canvas/Scene";  // Import the Scene component
  */
 
 export default function Home() {
+
+  // Function to do smooth scroll
+
+  const scrollToAbout = () => {
+
+    const element = document.getElementById('about');
+    element?.scrollIntoView({ behavior: 'smooth' });
+
+  };
+
   return (
     <main className="relative min-h-screen w-ful bg-[#050505] overflow-hidden">
 
@@ -50,11 +63,17 @@ export default function Home() {
             VER PROYECTOS
           </button>
 
-          <button className="px-8 py-3 border border-white/20 text-white hover:bg-white/10 transition-all rounded-sm backdrop-blur-md">
+          <button
+            onClick={scrollToAbout}
+            className="px-8 py-3 border border-white/20 text-white hover:bg-white/10 transition-all rounded-sm backdrop-blur-md"
+          >
             SOBRE MÍ
           </button>
 
         </div>
+
+        {/* About me section */}
+        <About />
 
       </div>
 
