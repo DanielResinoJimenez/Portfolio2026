@@ -49,12 +49,10 @@ export default function Projects() {
                         {/* Image Container */}
                         <div className="relative h-48 w-full overflow-hidden bg-gray-900">
                             <img
-                                // Esta URL apunta a la imagen que tú pongas en tu repo (carpeta assets/preview.png)
                                 src={`https://raw.githubusercontent.com/DanielResinoJimenez/${repo.name}/main/assets/images/preview.png`}
                                 alt={repo.name}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                                 onError={(e) => {
-                                    // Si NO encuentra tu imagen personalizada, salta al backup de GitHub automáticamente
                                     (e.target as HTMLImageElement).src = `https://opengraph.githubassets.com/1/${repo.full_name}`;
                                 }}
                             />
