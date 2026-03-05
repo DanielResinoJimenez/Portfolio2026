@@ -21,7 +21,7 @@ export default function Projects() {
 
     useEffect(() => {
 
-        fetch('https://api.github.com/users/DanielResinoJimenez/repos?sort=updated&per_page=6')
+        fetch('https://api.github.com/users/DanielResinoJimenez/repos?sort=updated&per_page=9')
             .then(res => res.json())
             .then(data => {
                 // Filter to exclude forks and keep only those with a description
@@ -34,7 +34,7 @@ export default function Projects() {
     return (
         <section id="projects" className="py-20 px-4 max-w-6xl mx-auto">
             <h3 className="text-3xl font-bold text-white mb-10 flex items-center gap-3">
-                <span className="text-neon-blue font-mono">02.</span> PROYECTOS_RECIENTES
+                PROYECTOS_RECIENTES
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
