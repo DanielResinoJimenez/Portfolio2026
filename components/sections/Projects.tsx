@@ -9,6 +9,7 @@ import { ExternalLink, Star, Folder } from 'lucide-react';
 interface Repo {
     id: number;
     name: string;
+    full_name: string;
     description: string;
     html_url: string;
     stargazers_count: number;
