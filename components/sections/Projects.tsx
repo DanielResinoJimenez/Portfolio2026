@@ -46,18 +46,23 @@ export default function Projects() {
                         target="_blank"
                         className="group relative bg-dark-card border border-white/10 rounded-xl overflow-hidden transition-all duration-500 hover:border-neon-blue/50"
                     >
-                        {/* CONTENEDOR DE IMAGEN */}
+                        {/* Image Container */}
                         <div className="relative h-48 w-full overflow-hidden bg-gray-900">
                             <img
-                                // Opción A: Usando la imagen social de GitHub
-                                src={`https://opengraph.githubassets.com/1/${repo.full_name}`}
+                                // Esta URL apunta a la imagen que tú pongas en tu repo (carpeta assets/preview.png)
+                                src={`https://raw.githubusercontent.com/DanielResinoJimenez/${repo.name}/main/assets/images/preview.png`}
                                 alt={repo.name}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                                onError={(e) => {
+                                    // Si NO encuentra tu imagen personalizada, salta al backup de GitHub automáticamente
+                                    (e.target as HTMLImageElement).src = `https://opengraph.githubassets.com/1/${repo.full_name}`;
+                                }}
                             />
-                            {/* Overlay de color para que el texto resalte siempre */}
+
+                            {/* Color Overlay to see text better*/}
                             <div className="absolute inset-0 bg-gradient-to-t from-dark-card via-transparent to-transparent" />
 
-                            {/* Badge de lenguaje flotante */}
+                            {/* Badge of floating language */}
                             {repo.language && (
                                 <span className="absolute top-3 right-3 px-2 py-1 text-[10px] font-mono bg-black/60 border border-neon-blue/30 text-neon-blue rounded-md backdrop-blur-md">
                                     {repo.language.toUpperCase()}
@@ -65,7 +70,7 @@ export default function Projects() {
                             )}
                         </div>
 
-                        {/* CONTENIDO DE LA TARJETA (Lo que ya teníamos) */}
+                        {/* Card Content */}
                         <div className="p-6 relative z-10">
                             <h4 className="text-xl font-bold text-white group-hover:text-neon-blue transition-colors mb-2 uppercase tracking-tight">
                                 {repo.name.replace(/-/g, ' ')}
