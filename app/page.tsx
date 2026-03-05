@@ -2,6 +2,7 @@
 
 import Scene from "@/components/canvas/Scene";  // Import the Scene component
 import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
 
 /**
  * Home component
@@ -15,6 +16,13 @@ export default function Home() {
   const scrollToAbout = () => {
 
     const element = document.getElementById('about');
+    element?.scrollIntoView({ behavior: 'smooth' });
+
+  };
+
+  const scrollToProjects = () => {
+
+    const element = document.getElementById('projects');
     element?.scrollIntoView({ behavior: 'smooth' });
 
   };
@@ -62,7 +70,9 @@ export default function Home() {
 
           <div className="flex gap-4 mt-10">
 
-            <button className="px-8 py-3 bg-neon-blue text-white font-bold rounded-sm hover:text-black hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(0,243,255,0.4)]">
+            <button
+              onClick={scrollToProjects}
+              className="px-8 py-3 bg-neon-blue text-white font-bold rounded-sm hover:text-black hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(0,243,255,0.4)]">
               VER PROYECTOS
             </button>
 
@@ -79,6 +89,11 @@ export default function Home() {
         {/* About me section */}
         <section id="about" className="h-screen flex flex-col items-center justify-center">
           <About />
+        </section>
+
+        {/* Projects section */}
+        <section id="projects">
+          <Projects />
         </section>
 
       </div>
