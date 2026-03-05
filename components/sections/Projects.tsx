@@ -43,39 +43,35 @@ export default function Projects() {
                         key={repo.id}
                         href={repo.html_url}
                         target="_blank"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group relative p-6 bg-dark-card border border-white/10 rounded-xl hover:border-neon-blue/50 transition-all duration-500 overflow-hidden"
+                        className="group relative bg-dark-card border border-white/10 rounded-xl overflow-hidden transition-all duration-500 hover:border-neon-blue/50"
                     >
-                        {/* Light effect with mouse hover */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {/* CONTENEDOR DE IMAGEN */}
+                        <div className="relative h-48 w-full overflow-hidden bg-gray-900">
+                            <img
+                                // Opción A: Usando la imagen social de GitHub
+                                src={`https://opengraph.githubassets.com/1/${repo.full_name}`}
+                                alt={repo.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                            />
+                            {/* Overlay de color para que el texto resalte siempre */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-dark-card via-transparent to-transparent" />
 
-                        <div className="relative z-10">
-                            <div className="flex justify-between items-start mb-4">
-                                <Folder className="text-neon-blue w-8 h-8" />
-                                <ExternalLink className="text-gray-500 group-hover:text-white transition-colors w-5 h-5" />
-                            </div>
+                            {/* Badge de lenguaje flotante */}
+                            {repo.language && (
+                                <span className="absolute top-3 right-3 px-2 py-1 text-[10px] font-mono bg-black/60 border border-neon-blue/30 text-neon-blue rounded-md backdrop-blur-md">
+                                    {repo.language.toUpperCase()}
+                                </span>
+                            )}
+                        </div>
 
+                        {/* CONTENIDO DE LA TARJETA (Lo que ya teníamos) */}
+                        <div className="p-6 relative z-10">
                             <h4 className="text-xl font-bold text-white group-hover:text-neon-blue transition-colors mb-2 uppercase tracking-tight">
                                 {repo.name.replace(/-/g, ' ')}
                             </h4>
-
-                            <p className="text-gray-400 text-sm mb-6 line-clamp-3">
-                                {repo.description || "Proyecto tecnológico desarrollado con arquitectura moderna. Sin descripción disponible."}
+                            <p className="text-gray-400 text-sm line-clamp-2">
+                                {repo.description || "Explora este repositorio para ver los detalles del desarrollo."}
                             </p>
-
-                            <div className="flex items-center gap-4 text-xs font-mono text-gray-500">
-                                {repo.language && (
-                                    <span className="flex items-center gap-1">
-                                        <span className="w-2 h-2 rounded-full bg-neon-blue" />
-                                        {repo.language}
-                                    </span>
-                                )}
-                                <span className="flex items-center gap-1">
-                                    <Star className="w-3 h-3" /> {repo.stargazers_count}
-                                </span>
-                            </div>
                         </div>
                     </motion.a>
                 ))}
